@@ -38,4 +38,4 @@ jobs:
     - name: Snyk monitor 
       run: snyk test
       env:
-        SNYK_TOKEN: ${{09d9a179-08bc-4b11-b044-74ae255cc141}}
+        SNYK_TOKEN: ${{ 09d9a179-08bc-4b11-b044-74ae255cc141 }}
