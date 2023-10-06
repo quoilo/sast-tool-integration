@@ -11,7 +11,7 @@
 #
 name: "CodeQL"
 
-on: #this workflow will run when there is a push or pull request to the main branch
+on:
   push:
     branches: [ "main" ]
   pull_request:
@@ -129,5 +129,3 @@ jobs:
           SNYK_TOKEN: efd72020-b3a1-49b8-b6b2-bbe83b725b27
         with:
           command: monitor
-
-  
