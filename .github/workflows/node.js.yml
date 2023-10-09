@@ -86,7 +86,7 @@ jobs:
           application_name: sast-tool-integration-2
           environment_name: Sast-tool-integration-2-env
           
-          version_label: 1
+          version_label: 7
           region: "ap-southeast-2"
           deployment_package: deploy.zip
 
