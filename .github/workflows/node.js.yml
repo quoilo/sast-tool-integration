@@ -1,8 +1,8 @@
-# This file describes the workflow to capture vunlerabilities via Snyk.
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+# testing change
 
-# It contains 3 jobs, "build", "security-sarif-reporting" and "security-monitor-reporting"
-
-name: "Snyk"
+name: Node.js CI
 
 on:
   push:
@@ -10,10 +10,8 @@ on:
   pull_request:
     branches: [ "main" ]
 
-
 jobs:
-  ### Builds the code and runs the tests
-  build: 
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -30,8 +28,7 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
 
-  ### Runs Snyk GitHub actions to scan code for vulnerabilities. If vulnerabilities are found, the job uploads a SARIF file containing the results to GitHub Code Scanning.
-  security-sarif-reporting: 
+  security-sarif-reporting:
     permissions:
       contents: write # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
@@ -51,7 +48,6 @@ jobs:
         with:
           sarif_file: snyk.sarif
 
-  ### Runs the Snyk GitHub action with the monitor command. This command updates the Snyk UI with the latest vulnerability information for your project
   security-monitor-reporting:
     permissions:
       contents: write # for actions/checkout to fetch code
