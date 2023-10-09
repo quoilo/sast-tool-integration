@@ -82,7 +82,6 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           
-          
           application_name: sast-tool-integration-3
           environment_name: sast-tool-integration-3-env
           
