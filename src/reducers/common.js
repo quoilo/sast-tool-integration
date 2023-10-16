@@ -18,7 +18,7 @@ import {
 } from '../constants/actionTypes';
 
 const defaultState = {
-  appName: 'Conduit',
+  appName: 'Computer Knowledge Bank',
   token: null,
   viewChangeCounter: 0
 };
