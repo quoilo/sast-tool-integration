@@ -1,6 +1,9 @@
 # ![React + Redux Example App](project-logo.png)
 
 ## Project by group CD2
+**Domain (prod environment)**: https://sast-tool-integration.vercel.app/
+
+**Vercel dashboard**: https://vercel.com/duddlies-projects/sast-tool-integration
 
 [![RealWorld Frontend](https://img.shields.io/badge/realworld-frontend-%23783578.svg)](http://realworld.io)
 
