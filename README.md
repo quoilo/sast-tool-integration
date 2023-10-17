@@ -45,6 +45,10 @@ If you want to change the API URL to a local server, simply edit `src/agent.js` 
 
 The example application is a social blogging site (i.e. a Medium.com clone) called "Conduit". It uses a custom API for all requests, including authentication. You can view a live demo over at https://redux.productionready.io/
 
+## Integration with SAST Tool and SYNK
+
+This simple web application has been unboarded with a securtiy tool named SAST. Currently a software named SYNK is being used to measure the impact the security tool has on the deployment of the web app. These results can then be given back to our client.
+
 **General functionality:**
 
 - Authenticate users via JWT (login/signup pages + logout button on settings page)
