@@ -64,5 +64,11 @@ function isPromise(v) {
   return v && typeof v.then === 'function';
 }
 
+it('should throw an error if called with a wrong type of argument', function() {
+  assert.throws(function () {parse(23);}, TypeError);
+  assert.throws(function () {parse(math.unit('5cm'));}, TypeError);
+  assert.throws(function () {parse(new Complex(2,3));}, TypeError);
+  assert.throws(function () {parse(true);}, TypeError);
+ });
 
 export { promiseMiddleware, localStorageMiddleware }
