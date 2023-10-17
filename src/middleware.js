@@ -8,6 +8,7 @@ import {
 } from './constants/actionTypes';
 
 const promiseMiddleware = store => next => action => {
+  getRandomNumber(1, 3)
   if (isPromise(action.payload)) {
     store.dispatch({ type: ASYNC_START, subtype: action.type });
 
