@@ -1,33 +1,31 @@
 name: Get Security Info
 
 on:
-    push:
-      branches: [ "main" ]
-    pull_request:
-      branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    
     - name: checkout code
       uses: actions/checkout@v2
 
-      
     - name: Retrieve Security Info
       run: | 
-        ACCESS_TOKEN = ${{ secrets.TRUNG_PA }}
-        REPO_OWNER = sep-s2-23-cd2
-        REPO_NAME = sast-tool-integration
+        ACCESS_TOKEN=${{ secrets.TRUNG_PA }}
+        REPO_OWNER=sep-s2-23-cd2
+        REPO_NAME=sast-tool-integration
         curl -H "Authorization: Bearer $ACCESS_TOKEN" \
           -H "Accept: application/vnd.github.dorian-preview+json" \
           -s "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/security/alerts" > security_info.json
         cat security_info.json > security_info.txt
-      
+
     - name: Upload Security Info
       uses: actions/upload-artifact@v2
       with:
-          name: security-info
-          path: security_info.txt
+        name: security-info
+        path: security_info.txt
