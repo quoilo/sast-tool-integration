@@ -17,10 +17,10 @@ jobs:
     - name: Retrieve Security Info
       run: | 
         ACCESS_TOKEN=${{ secrets.TRUNG_PA }}
-        REPO_OWNER=sep-s2-23-cd2
+        REPO_OWNER=quoilo
         REPO_NAME=sast-tool-integration
         curl -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -H "Accept: application/vnd.github.dorian-preview+json" \
+          -H "Accept: application/vnd.github+json" \
           -s "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/code-scanning/alerts" > security_info.json
         cat security_info.json > security_info.txt
 
