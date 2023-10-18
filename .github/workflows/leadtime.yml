@@ -1,7 +1,7 @@
 name: "Lead time for change"
 
 on:
-    release:
+    deployment:
         types: [created]
 
 jobs:
