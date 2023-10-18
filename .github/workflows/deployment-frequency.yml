@@ -1,0 +1,26 @@
+name: Deployment Tracking
+
+on:
+  deployment:
+    types: [deployment]
+
+jobs:
+  track-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Record Deployment
+        run: |
+          echo "Deployment Date: $(date)" >> deployment-log.txt
+          echo "Environment: ${{ github.event.deployment.environment }}" >> deployment-log.txt
+          echo "Deployment ID: ${{ github.event.deployment.id }}" >> deployment-log.txt
+        continue-on-error: true
+
+      - name: Upload Deployment Log
+        uses: actions/upload-artifact@v2
+        with:
+          name: deployments-log
+          path: deployment-log.txt
