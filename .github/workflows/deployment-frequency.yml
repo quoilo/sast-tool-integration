@@ -1,18 +1,19 @@
 name: Deployment Tracking
+
 on:
   push:
     branches:
-      - deployment-testing
-on:
-  deployment:
-    types: [deployment]
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   track-deployment:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: checkout
         uses: actions/checkout@v2
 
       - name: Record Deployment
