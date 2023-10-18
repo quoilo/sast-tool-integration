@@ -21,6 +21,7 @@ jobs:
         REPO_NAME="sast-tool-integration"
         curl -H "Authorization: Bearer $ACCESS_TOKEN" \
           -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
           -s "https://github.com/$REPO_OWNER/$REPO_NAME/security/code-scanning" > security_info.json
         cat security_info.json > security_info.txt
 
