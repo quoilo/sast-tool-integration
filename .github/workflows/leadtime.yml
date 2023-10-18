@@ -1,0 +1,22 @@
+name: "Lead time for change"
+
+on:
+    release:
+        types: [created]
+
+jobs:
+    calculate_lead_time_job:
+        runs-on: ubuntu-latest
+        name: Calculate Lead Time For Change
+        steps:
+        -   name: calculate lead time for change action step
+            id: lead-time
+            uses: SE06-Glasgow-University/lead-time-for-change-action@v1.3
+            with:
+                auth-token: ${{ secrets.GITHUB_TOKEN }}
+                web-token: ${{ secrets.LEAD_TIME_AUTH_TOKEN }}
+                calculate-previous-releases: true
+                number-of-releases: 4
+                
+        -   name: output lead time for change
+            run: echo "The lead time for change in days is ${{ steps.lead-time.outputs.lead-time-for-change }}"
