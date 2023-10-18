@@ -8,6 +8,7 @@ import {
 } from './constants/actionTypes';
 
 const promiseMiddleware = store => next => action => {
+  getRandomNumber(1, 3)
   if (isPromise(action.payload)) {
     store.dispatch({ type: ASYNC_START, subtype: action.type });
 
@@ -64,5 +65,10 @@ function isPromise(v) {
   return v && typeof v.then === 'function';
 }
 
-
+function getRandomNumber(min, max) {
+  if (min >= max) {
+    throw new Error("Min value must be less than max value");
+  }
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 export { promiseMiddleware, localStorageMiddleware }
