@@ -1,8 +1,10 @@
 name: "Lead time for change"
 
 on:
-    deployment:
-        types: [created]
+    push:
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
 
 jobs:
     calculate_lead_time_job:
