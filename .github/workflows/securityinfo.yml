@@ -21,7 +21,7 @@ jobs:
         REPO_NAME="sast-tool-integration"
         curl -H "Authorization: Bearer $ACCESS_TOKEN" \
           -H "Accept: application/vnd.github+json" \
-          -s "https://github.com/$REPO_OWNER/$REPO_NAME/security/code-scanning/alerts" > security_info.json
+           "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/code-scanning/alerts" > security_info.json
         cat security_info.json > security_info.txt
 
     - name: Upload Security Info
