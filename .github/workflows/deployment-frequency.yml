@@ -1,5 +1,8 @@
 name: Deployment Tracking
-
+on:
+  push:
+    branches:
+      - deployment-testing
 on:
   deployment:
     types: [deployment]
