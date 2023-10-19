@@ -2,7 +2,6 @@ name: jest-timing-action
 
 # pull request on the master branch
 on:
-on:
   push:
     branches: [ "main" ]
   pull_request:
