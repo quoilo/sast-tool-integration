@@ -32,5 +32,4 @@ jobs:
     - name: PR Action
       uses: javierfernandes/jest-timing-action@master
       with:
-        threshold: 25
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        threshold: 1
