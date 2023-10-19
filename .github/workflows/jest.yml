@@ -11,9 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Post Test Timing deltas on PR
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: PR Action
       uses: javierfernandes/jest-timing-action@master
       with:
-        threshold: 25
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        threshold: 1
