@@ -46,7 +46,13 @@ jobs:
     needs: download_security_artifact
 
     # Find number of times the severity is "medium"
+
     steps:
+    - name: Print Current Directory
+      run: |
+        pwd
+      working-directory: ${{ github.workspace }}
+
     - name: Search text in security info
       run: |
         search_text="Medium severity"
