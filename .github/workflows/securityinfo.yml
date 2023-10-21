@@ -33,6 +33,7 @@ jobs:
   # Downloads the created security info text file from artifacts
   download_security_artifact:
     runs-on: ubuntu-latest
+    needs: generate_sec_info
 
     steps:
     - name: download the security artifact
