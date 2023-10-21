@@ -46,7 +46,7 @@ jobs:
           fi
         done < security_info.txt
     
-    - name: Upload Security Info
+    - name: Upload Severity Info
       uses: actions/upload-artifact@v2
       with:
         name: severity_info
