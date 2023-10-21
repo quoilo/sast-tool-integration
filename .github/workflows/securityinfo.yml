@@ -42,7 +42,9 @@ jobs:
 
   search_text:
     runs-on: ubuntu-latest
-    needs: generate_sec_info
+    needs: 
+      - generate_sec_info
+      - download_security_artifact
 
     # Find number of times the severity is "medium"
     steps:
