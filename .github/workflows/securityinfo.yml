@@ -40,7 +40,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: security-info
-
+        
   search_text:
     runs-on: ubuntu-latest
     needs: download_security_artifact
@@ -51,7 +51,7 @@ jobs:
     - name: Search text in security info
       run: |
         search_text="Medium severity"
-        cd ${{ github.workspace }}
+        cd ${{ github.workspace }}/security-info
         pwd
         ls
         while read -r line; do
