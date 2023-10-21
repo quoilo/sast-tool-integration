@@ -30,7 +30,6 @@ jobs:
         name: security-info
         path: security_info.txt
   
-  # Downloads the created security info text file from artifacts
   download_security_artifact:
     runs-on: ubuntu-latest
 
