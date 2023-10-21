@@ -2,12 +2,12 @@ name: Get Security Info
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-  build:
+  generate_sec_info:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,3 +29,24 @@ jobs:
       with:
         name: security-info
         path: security_info.txt
+  
+  search_text:
+    runs-on: ubuntu-latest
+    needs: generate_sec_info
+
+    steps:
+    - name: Search text in security info
+      run: |
+        search_text="Medium severity"
+
+        while read -r line; do
+          if echo "$line" | grep -q "$search_text"; then
+            echo "MEDIUM"
+          fi
+        done < security_info.txt
+    
+    - name: Upload Security Info
+      uses: actions/upload-artifact@v2
+      with:
+        name: severity_info
+        path: severity_info.txt
