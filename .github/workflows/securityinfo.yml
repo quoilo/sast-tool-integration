@@ -48,14 +48,10 @@ jobs:
     # Find number of times the severity is "medium"
 
     steps:
-    - name: Print Current Directory
-      run: |
-        pwd
-      working-directory: ${{ github.workspace }}
-
     - name: Search text in security info
       run: |
         search_text="Medium severity"
+        cd ${{ github.workspace }} 
         while read -r line; do
           if echo "$line" | grep -q "$search_text"; then
             echo "MEDIUM"
