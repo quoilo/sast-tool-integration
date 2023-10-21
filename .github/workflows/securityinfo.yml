@@ -34,6 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: generate_sec_info
 
+    # Find number of times the severity is "medium"
     steps:
     - name: Search text in security info
       run: |
