@@ -56,7 +56,7 @@ jobs:
     - name: Search text in security info
       run: |
         search_text="Medium severity"
-        cd ${{ github.workspace }}/sast-tool-integration
+        cd ${{ github.workspace }}
         pwd
         ls
         while read -r line; do
