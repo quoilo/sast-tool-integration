@@ -41,7 +41,7 @@ jobs:
         pwd
         ls
     - name: download the security artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: security-info
       
