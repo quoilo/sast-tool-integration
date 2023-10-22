@@ -49,6 +49,9 @@ jobs:
       with:
         name: security-info
         path: ${{ github.workspace }}
+
+    - name: get working directory
+      run: ls -R
     
   search_text:
     runs-on: ubuntu-latest
