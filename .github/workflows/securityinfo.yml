@@ -40,12 +40,16 @@ jobs:
       run: |
         pwd
         ls
+
+    - name: get working directory
+      run: ls -R
+      
     - name: download the security artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v2
       with:
         name: security-info
-      
-        
+        path: ${{ github.workspace }}
+    
   search_text:
     runs-on: ubuntu-latest
     needs: download_security_artifact
@@ -56,8 +60,8 @@ jobs:
     - name: Search text in security info
       run: |
         search_text="Medium severity"
-        cd /
-        cd /runner/work/sast-tool-integration/sast-tool-integration
+        cd ..
+        cd ${{ github.workspace }}
         pwd
         ls
         while read -r line; do
