@@ -36,10 +36,15 @@ jobs:
     needs: generate_sec_info
 
     steps:
+    - name: get pwd
+      run: |
+        pwd
+        ls
     - name: download the security artifact
       uses: actions/download-artifact@v2
       with:
         name: security-info
+      
         
   search_text:
     runs-on: ubuntu-latest
