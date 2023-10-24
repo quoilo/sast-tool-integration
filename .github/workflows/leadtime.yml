@@ -1,10 +1,6 @@
-name: "Lead time for change"
-
 on:
-    push:
-        branches: [ "main" ]
-    pull_request:
-        branches: [ "main" ]
+    release:
+        types: [created]
 
 jobs:
     calculate_lead_time_job:
@@ -15,8 +11,10 @@ jobs:
             id: lead-time
             uses: SE06-Glasgow-University/lead-time-for-change-action@v1.3
             with:
-                auth-token: ${{ secrets.LEAD_TIME_TOKEN }}
-
+                auth-token: ${{ secrets.GITHUB_TOKEN }}
+                web-token: ${{ secrets.LEAD_TIME_AUTH_TOKEN }}
+                calculate-previous-releases: false
+                number-of-releases: 4
                 
         -   name: output lead time for change
             run: echo "The lead time for change in days is ${{ steps.lead-time.outputs.lead-time-for-change }}"
