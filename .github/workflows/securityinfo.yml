@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: download the security artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: security-info
           path: security-info-artifact
@@ -46,5 +46,5 @@ jobs:
     steps:
       - name: Move Security Info to Main Code
         run: |
-          mv security-info-artifact/security_info.txt .
-          rm -rf security-info-artifact
+          mv security-info/security_info.txt
+          rm -rf security-info
