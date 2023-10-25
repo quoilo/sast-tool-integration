@@ -1,80 +1,34 @@
-
 name: Get Security Info
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
-  generate_sec_info:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Retrieve Security Info
-      run: | 
-        ACCESS_TOKEN=${{ secrets.TRUNG_PA }}
-        REPO_OWNER=sep-s2-23-cd2
-        REPO_NAME=sast-tool-integration
-        curl -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -H "Accept: application/vnd.github+json" \
-          -s "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/code-scanning/alerts" > security_info.json
-        cat security_info.json > security_info.txt
-    - name: Upload Security Info
-      uses: actions/upload-artifact@v2
-      with:
-        name: security-info
-        path: security_info.txt
-  
-  # Downloads the created security info text file from artifacts
-  download_security_artifact:
-    runs-on: ubuntu-latest
-    needs: generate_sec_info
+      - name: Retrieve Security Info
+        run: |
+          ACCESS_TOKEN=${{ secrets.TRUNG_PA }}
+          REPO_OWNER=sep-s2-23-cd2
+          REPO_NAME=sast-tool-integration
+          curl -H "Authorization: Bearer $ACCESS_TOKEN" -H "Accept: application/vnd.github+json" -s "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/code-scanning/alerts" > security_info.json
+          cat security_info.json > security_info.txt
 
-    steps:
-    - name: get pwd
-      run: |
-        pwd
-        ls
+      - name: Download Security Info Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: security-info
+          path: security_info_artifact
 
-    - name: get working directory
-      run: ls -R
-      
-    - name: download the security artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: security-info
-        path: ${{ github.workspace }}
-
-    - name: get working directory
-      run: ls -R
-    
-  search_text:
-    runs-on: ubuntu-latest
-    needs: download_security_artifact
-
-    # Find number of times the severity is "medium"
-
-    steps:
-    - name: Search text in security info
-      run: |
-        search_text="Medium severity"
-        cd ..
-        cd ${{ github.workspace }}
-        pwd
-        ls
-        while read -r line; do
-          if echo "$line" | grep -q "$search_text"; then
-            echo "MEDIUM"
-          fi
-        done < security_info.txt
-    
-    - name: Upload Severity Info
-      uses: actions/upload-artifact@v2
-      with:
-        name: severity_info
-        path: severity_info.txt
+      - name: Move Security Info to Main Code
+        run: |
+          mv security_info_artifact/security_info.txt .
+          rm -rf security_info_artifact
